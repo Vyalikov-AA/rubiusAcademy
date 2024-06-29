@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public PlayerDataScriptableObject scriptableObject;
     public GameObject ObjectToSpavn;
     private GameObject ObjectToSpavnPrefab;
     public Transform objectOfGame;
@@ -42,26 +43,26 @@ public class NewBehaviourScript : MonoBehaviour
             AddPrefab = false;
             Debug.Log("Delete Complite");
         }
-
+        
         //Movements
         if (Input.GetKey(ButonForward))
         {
-            objectOfGame.Translate(Vector3.forward * speed);
+            objectOfGame.Translate(Vector3.forward * scriptableObject.SpeedMovements);
             Debug.Log("step Up");
         }
         if (Input.GetKey(ButonBack))
         {
-            objectOfGame.Translate(Vector3.back * speed);
+            objectOfGame.Translate(Vector3.back * scriptableObject.SpeedMovements);
             Debug.Log("step back");
         }
         if (Input.GetKey(ButonLeft))
         {
-            objectOfGame.Rotate(Vector3.up * rotationSpeed);
+            objectOfGame.Rotate(Vector3.up * scriptableObject.SpeedRotations);
             Debug.Log("rotation left");
         }
         if (Input.GetKey(ButonRight))
         {
-            objectOfGame.Rotate(Vector3.down * rotationSpeed);
+            objectOfGame.Rotate(Vector3.down * scriptableObject.SpeedRotations);
             Debug.Log("rotation right");
         }
         /*float translation = Input.GetAxis("Vertical") * speed;
