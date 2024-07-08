@@ -2,13 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerView : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameObject;
-    public PlayerDataScriptableObject _scriptableObject;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    private readonly PlayerView _currentView;
+    public MeshRenderer MeshRendererPlayer => _meshRenderer;
+
     public event EventHandler<(GameObject, string)> CollisionHappaned;
     public event EventHandler<(GameObject, string)> CollisionStay;
+    public event EventHandler<(GameObject, string)> CollisionExit;
+
+    //public event EventHandler<PlayerView> PlayerSpawned;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,14 +24,14 @@ public class PlayerView : MonoBehaviour
     {
         CollisionStay?.Invoke(this, (collision.gameObject, collision.transform.tag));
     }
-    private void Update()
+    private void OnCollisionExit(Collision collision)
     {
-        if (_scriptableObject.HealthPoints <= 0)
-        {
-            Destroy(_gameObject);
-            _scriptableObject.HealthPoints = 10;
-            Instantiate(_gameObject);
-        }
+        CollisionExit?.Invoke(this, (collision.gameObject, collision.transform.tag));
     }
+    /*private void GetPlayerView(PlayerView playerView)
+    {
+        PlayerSpawned?.Invoke(this, _currentView);
+        return;
+    }*/
 }
 

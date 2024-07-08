@@ -1,23 +1,30 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class EnemyMovements : MonoBehaviour
+namespace Assets.Scripts
 {
-    [SerializeField] private PlayerDataScriptableObject scriptableObject;
-    [SerializeField] private Transform _transformPlayer;
-    [SerializeField] private Transform _transformEnemy;
-
-    // Update is called once per frame
-    void Update()
+    internal class EnemyMovements
     {
-        if (_transformPlayer)
+        private EnemyParametrsHandler _enemyHealthHandler;
+        private PlayerView _playerView;
+        private EnemyView _enemyView;
+        public EnemyMovements()
         {
-            Vector3 delta = _transformPlayer.position - _transformEnemy.position;
-            delta.Normalize();
-            float moveSpeed = scriptableObject.SpeedMovementsEnemy * Time.deltaTime;
-            transform.position = transform.position + (delta * moveSpeed);
         }
+        public void Move(PlayerView playerView, EnemyView enemyView, EnemyParametrsHandler enemyHealthHandler)
+        {
+            _playerView = playerView;
+            _enemyView = enemyView;
+            _enemyHealthHandler = enemyHealthHandler;
+            Vector3 delta = _playerView.transform.position - _enemyView.transform.position;
+            delta.Normalize();
+            float moveSpeed = _enemyHealthHandler.SpeedEnemy * Time.deltaTime;
+            _enemyView.transform.position += delta * moveSpeed;
+        }
+
     }
 }

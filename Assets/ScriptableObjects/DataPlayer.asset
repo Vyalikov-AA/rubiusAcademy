@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865156bcf68ebe7489c0a4fc5ae0f472, type: 3}
   m_Name: DataPlayer
   m_EditorClassIdentifier: 
-  NumberOfCoins: 30
+  NumberOfCoins: 69
   SpeedMovements: 0.2
   SpeedRotations: 2
-  HealthPoints: 10
-  HealthPointsMax: 101
+  PlayerHealthPoints: 3
+  PlayerHealthPointsMax: 41
+  PlayerDamage: 1
   SpeedMovementsEnemy: 1
   EnemyDamage: 1
+  EnemyHealthPoints: 10
+  ColorChangeTime: 3
+  TriggerZoneDamage: 1

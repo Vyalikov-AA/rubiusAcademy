@@ -11,6 +11,8 @@ TagManager:
   - HealthUp
   - HealthDown
   - Enemy
+  - Red
+  - Blue
   layers:
   - Default
   - TransparentFX
